@@ -1,0 +1,2862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechLift - Code. Empower. Elevate. | techlift.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2e4a;
+    --navy-dark: #0f1e31;
+    --navy-mid: #1e3a5f;
+    --teal: #2a9d8f;
+    --teal-light: #3bbfb0;
+    --teal-dark: #1f7a6e;
+    --white: #ffffff;
+    --off-white: #f4f8fb;
+    --light-gray: #e8f0f7;
+    --text-dark: #0f1e31;
+    --text-mid: #3a5068;
+    --text-light: #6b8ca8;
+    --accent: #e8f7f5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ===== PAGES ===== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(15, 30, 49, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(42,157,143,0.2);
+    padding: 0 2rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0px;
+  }
+
+  .nav-logo-text span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0.85rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--teal-light);
+    background: rgba(42,157,143,0.12);
+  }
+
+  .nav-cta {
+    background: var(--teal) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1.1rem !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--teal-dark) !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    width: 24px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 50%, #1a4060 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  /* Circuit pattern */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(42,157,143,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(42,157,143,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 60% 80%, rgba(42,157,143,0.05) 0%, transparent 40%);
+  }
+
+  .circuit-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(90deg, var(--teal) 1px, transparent 1px),
+      linear-gradient(180deg, var(--teal) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Floating dots */
+  .hero-dots {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+    display: grid;
+    grid-template-columns: repeat(6, 10px);
+    gap: 8px;
+    opacity: 0.25;
+  }
+
+  .hero-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--teal);
+    border-radius: 50%;
+    display: block;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-text { animation: fadeUp 0.8s ease both; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(42,157,143,0.15);
+    border: 1px solid rgba(42,157,143,0.3);
+    color: var(--teal-light);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0px;
+  }
+
+  .hero h1 .highlight {
+    color: var(--teal-light);
+    position: relative;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42,157,143,0.35);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--teal-light);
+    color: var(--teal-light);
+    background: rgba(42,157,143,0.08);
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  /* SVG laptop illustration */
+  .hero-laptop-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--teal-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 5rem 2rem;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.2px;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 580px;
+  }
+
+  .section-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header.center {
+    text-align: center;
+  }
+
+  .section-header.center .section-sub {
+    margin: 0 auto;
+  }
+
+  /* ===== MISSION STRIP ===== */
+  .mission-strip {
+    background: var(--teal);
+    padding: 3rem 2rem;
+  }
+
+  .mission-strip .container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .mission-strip-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  .mission-strip p {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 500;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .mission-strip strong { font-weight: 700; }
+
+  /* ===== OFFERS GRID ===== */
+  .offers-section { background: var(--off-white); }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .offer-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--light-gray);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(26,46,74,0.1);
+    border-color: rgba(42,157,143,0.3);
+  }
+
+  .offer-card:hover::before { transform: scaleX(1); }
+
+  .offer-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  .offer-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .offer-card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ===== WHY MATTERS ===== */
+  .why-matters {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-matters::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 50%, rgba(42,157,143,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 90% 30%, rgba(42,157,143,0.08) 0%, transparent 40%);
+  }
+
+  .why-matters .container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .why-text .section-title { color: white; }
+  .why-text .section-label { color: var(--teal-light); }
+  .why-text p {
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    font-size: 1.025rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .why-stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+  }
+
+  .why-stat:hover {
+    background: rgba(42,157,143,0.12);
+    border-color: rgba(42,157,143,0.3);
+  }
+
+  .why-stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--teal-light);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .why-stat-text {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* ===== GET INVOLVED ===== */
+  .get-involved { background: var(--off-white); }
+
+  .get-involved-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .gi-card {
+    background: white;
+    border-radius: 18px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid var(--light-gray);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .gi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26,46,74,0.12);
+  }
+
+  .gi-card.featured {
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+
+  .gi-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 1.75rem;
+    background: var(--accent);
+  }
+
+  .gi-card.featured .gi-icon { background: rgba(42,157,143,0.2); }
+
+  .gi-card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .gi-card.featured h3 { color: white; }
+
+  .gi-card p {
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .gi-card.featured p { color: rgba(255,255,255,0.65); }
+
+  /* ===== PAGE HEADERS ===== */
+  .page-hero {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(42,157,143,0.15) 0%, transparent 60%);
+  }
+
+  .page-hero .container { position: relative; z-index: 1; }
+
+  .page-hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* ===== ABOUT PAGE ===== */
+  .about-mission {
+    background: var(--off-white);
+  }
+
+  .about-mission .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-mission-text p {
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-size: 1.025rem;
+    margin-bottom: 1rem;
+  }
+
+  .values-section { background: white; }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+
+  .value-card {
+    background: var(--off-white);
+    border-radius: 16px;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    border: 1px solid var(--light-gray);
+    transition: all 0.3s;
+  }
+
+  .value-card:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: translateY(-4px);
+  }
+
+  .value-card:hover h3, .value-card:hover p { color: white; }
+
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .value-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
+
+  .value-card p {
+    font-size: 0.825rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    transition: color 0.3s;
+  }
+
+  .vision-section { background: var(--teal); }
+
+  .vision-section .container { text-align: center; }
+
+  .vision-section .section-title { color: white; }
+
+  .vision-quote {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    line-height: 1.65;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  /* ===== PROGRAMS PAGE ===== */
+  .programs-section { background: white; }
+
+  .program-card {
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-card::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--teal);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: top;
+  }
+
+  .program-card:hover {
+    box-shadow: 0 12px 40px rgba(26,46,74,0.1);
+    border-color: rgba(42,157,143,0.25);
+  }
+
+  .program-card:hover::after { transform: scaleY(1); }
+
+  .program-card-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--accent);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .program-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .program-card p {
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    font-size: 0.975rem;
+  }
+
+  .topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--accent);
+    color: var(--teal-dark);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(42,157,143,0.2);
+  }
+
+  /* ===== LEADERSHIP PAGE ===== */
+  .council-section { background: var(--off-white); }
+
+  .council-top {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .president-card {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 420px;
+    margin: 0 auto 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .president-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(42,157,143,0.2) 0%, transparent 60%);
+  }
+
+  .president-card .pres-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(42,157,143,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .president-card h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.35rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .president-card .role-badge {
+    background: var(--teal);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .president-card p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .directors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .director-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--light-gray);
+    transition: all 0.3s;
+  }
+
+  .director-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(26,46,74,0.1);
+    border-color: rgba(42,157,143,0.3);
+  }
+
+  .director-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .director-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .director-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .director-card ul li {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .director-card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
+  /* VP card spans 2 */
+  .vp-card {
+    grid-column: span 1;
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+  }
+
+  .vp-card .director-icon { background: rgba(42,157,143,0.2); }
+  .vp-card h4 { color: white; }
+  .vp-card ul li { color: rgba(255,255,255,0.65); }
+  .vp-card ul li::before { color: var(--teal-light); }
+
+  /* ===== VOLUNTEER PAGE ===== */
+  .volunteer-benefits { background: var(--off-white); }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .benefit-item {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    border: 1px solid var(--light-gray);
+    transition: all 0.25s;
+  }
+
+  .benefit-item:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 16px rgba(42,157,143,0.1);
+  }
+
+  .benefit-item .bi-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .benefit-item h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.15rem;
+  }
+
+  .benefit-item p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.45;
+  }
+
+  .volunteer-roles { background: white; }
+
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .role-card {
+    background: var(--off-white);
+    border-radius: 16px;
+    padding: 1.75rem;
+    border: 1px solid var(--light-gray);
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .role-card:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: translateY(-4px);
+  }
+
+  .role-card:hover h3 { color: white; }
+  .role-card:hover p { color: rgba(255,255,255,0.65); }
+
+  .role-card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .role-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
+
+  .role-card p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    transition: color 0.3s;
+  }
+
+  /* ===== BOARD APPS PAGE ===== */
+  .apply-hero-section { background: var(--off-white); }
+
+  .why-join-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .wj-item {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border: 1px solid var(--light-gray);
+    transition: all 0.25s;
+  }
+
+  .wj-item:hover {
+    border-color: var(--teal);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(42,157,143,0.1);
+  }
+
+  .wj-item .wj-icon { font-size: 1.75rem; margin-bottom: 0.75rem; display: block; }
+
+  .wj-item h4 {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .positions-list { background: white; }
+
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .pos-card {
+    background: var(--off-white);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--light-gray);
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: all 0.3s;
+  }
+
+  .pos-card:hover {
+    border-color: rgba(42,157,143,0.4);
+    background: white;
+    box-shadow: 0 8px 28px rgba(26,46,74,0.08);
+  }
+
+  .pos-card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .pos-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.35rem;
+  }
+
+  .pos-card p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+
+  .requirements-section { background: var(--navy); }
+
+  .requirements-section .section-title { color: white; }
+  .requirements-section .section-label { color: var(--teal-light); }
+
+  .req-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .req-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+  }
+
+  .req-card:hover {
+    background: rgba(42,157,143,0.12);
+    border-color: rgba(42,157,143,0.3);
+  }
+
+  .req-card .req-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+  .req-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+
+  .req-card p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .faq-section { background: var(--off-white); }
+
+  .faq-item {
+    background: white;
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--light-gray);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .faq-item:hover { border-color: var(--teal); }
+
+  .faq-question {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--teal);
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-question::after { transform: rotate(45deg); }
+
+  .faq-answer {
+    display: none;
+    padding-top: 1rem;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-answer { display: block; }
+
+  .apply-cta { background: var(--teal); padding: 4rem 2rem; text-align: center; }
+
+  .apply-cta h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+
+  .apply-cta p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .apply-cta .btn-white {
+    background: white;
+    color: var(--teal-dark);
+    padding: 0.85rem 2.25rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .apply-cta .btn-white:hover {
+    background: var(--off-white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  /* ===== CONTACT PAGE ===== */
+  .contact-section { background: var(--off-white); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--light-gray);
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .contact-method:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 16px rgba(42,157,143,0.1);
+  }
+
+  .cm-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .cm-text h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.1rem;
+  }
+
+  .cm-text p {
+    font-size: 0.8rem;
+    color: var(--teal);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .contact-form {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--light-gray);
+    box-shadow: 0 4px 24px rgba(26,46,74,0.06);
+  }
+
+  .contact-form h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+    outline: none;
+    background: var(--off-white);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--teal);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(42,157,143,0.1);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit-btn {
+    width: 100%;
+    background: var(--navy);
+    color: white;
+    padding: 0.9rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.5rem;
+  }
+
+  .form-submit-btn:hover {
+    background: var(--teal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42,157,143,0.3);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy-dark);
+    padding: 3.5rem 2rem 2rem;
+  }
+
+  .footer-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-brand p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin: 1rem 0;
+    max-width: 280px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover {
+    background: var(--teal);
+    color: white;
+  }
+
+  .footer-col h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .footer-col ul li a:hover { color: var(--teal-light); }
+
+  .footer-bottom {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    color: rgba(255,255,255,0.35);
+    font-size: 0.8rem;
+  }
+
+  .footer-tagline {
+    color: var(--teal) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== MOBILE NAV ===== */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--navy-dark);
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--teal-light); }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .offers-grid { grid-template-columns: repeat(2, 1fr); }
+    .directors-grid { grid-template-columns: repeat(2, 1fr); }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-join-grid { grid-template-columns: repeat(3, 1fr); }
+    .values-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .vp-card { grid-column: span 1; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-visual { display: none; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+
+    .mission-strip .container { flex-direction: column; gap: 1rem; text-align: center; }
+
+    .offers-grid { grid-template-columns: 1fr; }
+    .get-involved-grid { grid-template-columns: 1fr; }
+    .why-matters .container { grid-template-columns: 1fr; gap: 2.5rem; }
+    .why-stats { grid-template-columns: repeat(2, 1fr); }
+
+    .about-mission .container { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .directors-grid { grid-template-columns: 1fr; }
+    .roles-grid { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+    .why-join-grid { grid-template-columns: repeat(2, 1fr); }
+    .pos-grid { grid-template-columns: 1fr; }
+    .req-grid { grid-template-columns: 1fr; }
+    .program-card { grid-template-columns: 1fr; }
+  }
+
+  /* ===== LOGO SVG INLINE ===== */
+  .logo-svg-inline {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* ===== NOTICE BANNER ===== */
+  .notice-banner {
+    background: var(--teal);
+    color: white;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1001;
+  }
+
+  .notice-banner a {
+    color: white;
+    text-decoration: underline;
+    margin-left: 0.75rem;
+    cursor: pointer;
+  }
+
+  body.has-banner nav {
+    top: 36px;
+  }
+
+  body.has-banner .hero { padding-top: calc(70px + 36px); }
+  body.has-banner .page-hero { padding-top: calc(7rem + 36px); }
+
+  /* ===== SCROLL PROGRESS ===== */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--teal);
+    z-index: 2000;
+    transition: width 0.1s;
+    width: 0%;
+  }
+
+  .divider-dots {
+    text-align: center;
+    padding: 0.5rem 0;
+    color: var(--teal);
+    letter-spacing: 6px;
+    font-size: 0.6rem;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body class="has-banner">
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Banner -->
+<div class="notice-banner" id="noticeBanner">
+  🎉 TechLift Board of Directors Applications Are Now Open!
+  <a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank">Apply Today →</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" onclick="showPage('home')">
+    <!-- Inline SVG logo recreation based on uploaded logo -->
+    <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Laptop base -->
+      <rect x="5" y="18" width="26" height="16" rx="2" fill="#1a2e4a" stroke="#1a2e4a" stroke-width="0.5"/>
+      <rect x="7" y="20" width="22" height="12" rx="1" fill="white" opacity="0.9"/>
+      <!-- Code symbols -->
+      <text x="11" y="29" font-size="7" fill="#2a9d8f" font-weight="800" font-family="monospace">&lt;/&gt;</text>
+      <!-- Laptop keyboard -->
+      <rect x="3" y="34" width="30" height="2.5" rx="1" fill="#1a2e4a"/>
+      <!-- Figure lifting -->
+      <circle cx="31" cy="10" r="3.5" fill="#1a2e4a"/>
+      <!-- Arrow/body -->
+      <path d="M27 16 Q29 12 31 10" stroke="#2a9d8f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Up arrow -->
+      <path d="M31 10 L36 5 M33 5 L36 5 L36 8" stroke="#2a9d8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- Pixel dots -->
+      <rect x="1" y="14" width="3" height="3" fill="#2a9d8f" opacity="0.7"/>
+      <rect x="5" y="11" width="2" height="2" fill="#2a9d8f" opacity="0.5"/>
+      <rect x="1" y="10" width="2" height="2" fill="#1a2e4a" opacity="0.6"/>
+    </svg>
+    <span class="nav-logo-text">Tech<span>Lift</span></span>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('programs')" id="nav-programs">Programs</a></li>
+    <li><a onclick="showPage('leadership')" id="nav-leadership">Leadership</a></li>
+    <li><a onclick="showPage('volunteer')" id="nav-volunteer">Volunteer</a></li>
+    <li><a onclick="showPage('apply')" id="nav-apply">Apply</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a onclick="showPage('apply')" class="nav-cta">Apply Now →</a></li>
+  </ul>
+
+  <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMobile()">Home</a>
+  <a onclick="showPage('about');toggleMobile()">About</a>
+  <a onclick="showPage('programs');toggleMobile()">Programs</a>
+  <a onclick="showPage('leadership');toggleMobile()">Leadership</a>
+  <a onclick="showPage('volunteer');toggleMobile()">Volunteer</a>
+  <a onclick="showPage('apply');toggleMobile()">Board Applications</a>
+  <a onclick="showPage('contact');toggleMobile()">Contact</a>
+</div>
+
+<!-- ============================
+     HOME PAGE
+============================= -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="circuit-lines"></div>
+    </div>
+    <div class="hero-dots">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">Student-Led Nonprofit · Est. 2025</div>
+        <h1>Expanding Access to<br><span class="highlight">Computer Science</span><br>Education</h1>
+        <p>TechLift provides free coding classes, technology opportunities, and leadership experiences for students in underserved communities.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank">
+            <span>Join TechLift</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn-secondary" onclick="showPage('about')">Learn More</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">Free</span>
+            <span class="stat-label">All Programs</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">JS</span>
+            <span class="stat-label">Flagship Course</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">0$</span>
+            <span class="stat-label">Cost to Students</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px">
+          <!-- Background glow -->
+          <ellipse cx="240" cy="200" rx="180" ry="160" fill="rgba(42,157,143,0.06)"/>
+
+          <!-- Main laptop -->
+          <rect x="80" y="130" width="280" height="180" rx="12" fill="#1a2e4a" stroke="rgba(42,157,143,0.4)" stroke-width="1.5"/>
+          <rect x="92" y="142" width="256" height="156" rx="6" fill="#0f1e31"/>
+          <!-- Screen content -->
+          <rect x="104" y="154" width="232" height="132" rx="4" fill="#0d1b2a"/>
+
+          <!-- Code lines -->
+          <rect x="116" y="168" width="60" height="7" rx="3" fill="#2a9d8f" opacity="0.8"/>
+          <rect x="184" y="168" width="40" height="7" rx="3" fill="#3bbfb0" opacity="0.6"/>
+          <rect x="116" y="183" width="20" height="7" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="144" y="183" width="80" height="7" rx="3" fill="#2a9d8f" opacity="0.5"/>
+          <rect x="116" y="198" width="20" height="7" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="144" y="198" width="50" height="7" rx="3" fill="#3bbfb0" opacity="0.4"/>
+          <rect x="202" y="198" width="30" height="7" rx="3" fill="rgba(255,255,255,0.2)"/>
+          <rect x="116" y="213" width="100" height="7" rx="3" fill="rgba(255,255,255,0.1)"/>
+          <rect x="116" y="228" width="20" height="7" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="144" y="228" width="60" height="7" rx="3" fill="#2a9d8f" opacity="0.6"/>
+          <rect x="116" y="243" width="80" height="7" rx="3" fill="rgba(255,255,255,0.08)"/>
+          <rect x="116" y="258" width="40" height="7" rx="3" fill="#2a9d8f" opacity="0.4"/>
+          <rect x="164" y="258" width="20" height="7" rx="3" fill="rgba(255,255,255,0.15)"/>
+
+          <!-- Cursor blink -->
+          <rect x="116" y="273" width="2" height="12" rx="1" fill="#2a9d8f" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0;0.9" dur="1.2s" repeatCount="indefinite"/>
+          </rect>
+
+          <!-- Laptop base -->
+          <rect x="60" y="310" width="320" height="14" rx="7" fill="#1a2e4a"/>
+          <ellipse cx="240" cy="317" rx="30" ry="4" fill="#0f1e31"/>
+
+          <!-- Floating cards -->
+          <!-- Card 1: Variables -->
+          <g transform="translate(370, 100)">
+            <rect width="90" height="64" rx="10" fill="rgba(26,46,74,0.9)" stroke="rgba(42,157,143,0.3)" stroke-width="1"/>
+            <rect x="10" y="12" width="30" height="6" rx="3" fill="#2a9d8f" opacity="0.8"/>
+            <rect x="10" y="24" width="70" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
+            <rect x="10" y="34" width="50" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
+            <rect x="10" y="46" width="35" height="10" rx="4" fill="#2a9d8f" opacity="0.7"/>
+            <text x="16" y="55" fill="white" font-size="6" font-weight="700" font-family="monospace">let x = 5</text>
+          </g>
+
+          <!-- Card 2: Function -->
+          <g transform="translate(18, 90)">
+            <rect width="86" height="58" rx="10" fill="rgba(42,157,143,0.15)" stroke="rgba(42,157,143,0.4)" stroke-width="1"/>
+            <text x="10" y="22" fill="#3bbfb0" font-size="7" font-weight="700" font-family="monospace">function()</text>
+            <rect x="10" y="28" width="66" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
+            <rect x="10" y="38" width="46" height="5" rx="2.5" fill="rgba(255,255,255,0.1)"/>
+          </g>
+
+          <!-- Card 3: Loop -->
+          <g transform="translate(380, 240)">
+            <rect width="80" height="52" rx="10" fill="rgba(42,157,143,0.12)" stroke="rgba(42,157,143,0.35)" stroke-width="1"/>
+            <text x="10" y="22" fill="#3bbfb0" font-size="7" font-weight="700" font-family="monospace">for loop</text>
+            <rect x="10" y="28" width="60" height="5" rx="2.5" fill="rgba(255,255,255,0.12)"/>
+            <rect x="10" y="38" width="40" height="5" rx="2.5" fill="rgba(255,255,255,0.08)"/>
+          </g>
+
+          <!-- Pixel accent dots -->
+          <rect x="50" y="50" width="8" height="8" rx="1" fill="#2a9d8f" opacity="0.5"/>
+          <rect x="64" y="50" width="5" height="5" rx="1" fill="#2a9d8f" opacity="0.3"/>
+          <rect x="50" y="64" width="5" height="5" rx="1" fill="#1a2e4a" opacity="0.5"/>
+          <rect x="420" y="360" width="8" height="8" rx="1" fill="#2a9d8f" opacity="0.4"/>
+          <rect x="432" y="360" width="5" height="5" rx="1" fill="#2a9d8f" opacity="0.25"/>
+
+          <!-- Up arrow accent -->
+          <g transform="translate(330, 50)" opacity="0.6">
+            <path d="M20 40 L20 10 M12 18 L20 10 L28 18" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION STRIP -->
+  <div class="mission-strip">
+    <div class="container">
+      <div class="mission-strip-icon">💻</div>
+      <p><strong>Our Mission:</strong> We provide free computer science education and technology opportunities to students in underserved communities - because every student deserves a pathway to the future.</p>
+    </div>
+  </div>
+
+  <!-- WHAT WE OFFER -->
+  <section class="offers-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">What We Offer</span>
+        <h2 class="section-title">Programs Built for Every Student</h2>
+        <p class="section-sub">From beginner-friendly coding classes to competitive hackathons, TechLift creates pathways for every student to discover their potential in technology.</p>
+      </div>
+      <div class="offers-grid">
+        <div class="offer-card fade-in">
+          <div class="offer-icon">💻</div>
+          <h3>Free Coding Classes</h3>
+          <p>Free JavaScript classes using the Code.org curriculum, taught by trained student instructors at libraries, schools, and community centers.</p>
+        </div>
+        <div class="offer-card fade-in">
+          <div class="offer-icon">🔧</div>
+          <h3>Technology Workshops</h3>
+          <p>Hands-on workshops introducing students to technology topics, tools, and career pathways in computer science and STEM.</p>
+        </div>
+        <div class="offer-card fade-in">
+          <div class="offer-icon">⚡</div>
+          <h3>Hackathons</h3>
+          <p>Collaborative coding events that challenge students to build creative solutions, fostering teamwork and innovation.</p>
+        </div>
+        <div class="offer-card fade-in">
+          <div class="offer-icon">🏆</div>
+          <h3>Coding Competitions</h3>
+          <p>Friendly competitions that encourage technical growth, problem-solving skills, and healthy teamwork.</p>
+        </div>
+        <div class="offer-card fade-in">
+          <div class="offer-icon">🌟</div>
+          <h3>Leadership Opportunities</h3>
+          <p>Student-led council positions with real-world experience in nonprofit management, education, and community impact.</p>
+        </div>
+        <div class="offer-card fade-in">
+          <div class="offer-icon">🤝</div>
+          <h3>Volunteer Opportunities</h3>
+          <p>Earn community service hours while gaining experience in teaching, marketing, event planning, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="why-matters">
+    <div class="container">
+      <div class="why-text fade-in">
+        <span class="section-label">Why It Matters</span>
+        <h2 class="section-title">Closing the Digital Divide</h2>
+        <p>Millions of students across the United States lack access to quality computer science education. The digital divide isn't just about internet access - it's about opportunity, exposure, and the knowledge to compete in a technology-driven world.</p>
+        <p>TechLift exists to change that. By partnering with libraries, community centers, and schools in underserved areas, we bring free, high-quality coding education directly to students who need it most - at no cost to them or their families.</p>
+        <p>When students learn to code, they don't just learn a skill. They learn to think critically, solve problems creatively, and believe in their own ability to build something new. That confidence changes everything.</p>
+        <br>
+        <a class="btn-primary" onclick="showPage('programs')">
+          See Our Programs
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="why-stats fade-in">
+        <div class="why-stat">
+          <span class="why-stat-num">60%</span>
+          <span class="why-stat-text">of low-income schools lack CS education access</span>
+        </div>
+        <div class="why-stat">
+          <span class="why-stat-num">$0</span>
+          <span class="why-stat-text">Cost to every student in our programs</span>
+        </div>
+        <div class="why-stat">
+          <span class="why-stat-num">JS</span>
+          <span class="why-stat-text">Flagship course using Code.org curriculum</span>
+        </div>
+        <div class="why-stat">
+          <span class="why-stat-num">∞</span>
+          <span class="why-stat-text">Potential unlocked for every student we reach</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section class="get-involved">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">Get Involved</span>
+        <h2 class="section-title">Be Part of the Movement</h2>
+        <p class="section-sub">Whether you want to teach, lead, or partner with us - there's a place for you in TechLift.</p>
+      </div>
+      <div class="get-involved-grid">
+        <div class="gi-card fade-in">
+          <div class="gi-icon">🙋</div>
+          <h3>Volunteer</h3>
+          <p>Earn community service hours and gain real experience in teaching, marketing, events, and more. No prior coding expertise required.</p>
+          <a class="btn-primary" onclick="showPage('volunteer')">Volunteer With Us →</a>
+        </div>
+        <div class="gi-card featured fade-in">
+          <div class="gi-icon">👑</div>
+          <h3>Apply for Leadership</h3>
+          <p>Join the TechLift Council. Lead a team, shape the organization, and build the skills that define your future. Applications are open now.</p>
+          <a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank" class="btn-primary">Apply for the Board →</a>
+        </div>
+        <div class="gi-card fade-in">
+          <div class="gi-icon">🏛️</div>
+          <h3>Partner With Us</h3>
+          <p>Libraries, schools, community centers, and organizations - partner with TechLift to bring free CS education to your community.</p>
+          <a class="btn-primary" onclick="showPage('contact')">Contact Us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end home page -->
+
+
+<!-- ============================
+     ABOUT PAGE
+============================= -->
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--teal-light);margin-bottom:0.75rem;display:block">Our Story</span>
+      <h1>About TechLift</h1>
+      <p>A student-led nonprofit on a mission to expand access to computer science education in underserved communities.</p>
+    </div>
+  </div>
+
+  <!-- Mission + Story -->
+  <section class="about-mission">
+    <div class="container">
+      <div class="about-mission-text fade-in">
+        <span class="section-label">Our Mission</span>
+        <h2 class="section-title">Built by Students. Built for Students.</h2>
+        <p>TechLift is a student-led nonprofit dedicated to expanding access to computer science education and technology opportunities in underserved communities. Through partnerships with libraries, community centers, and schools, we provide free coding classes, workshops, hackathons, and other STEM programs that help students develop valuable technical and problem-solving skills.</p>
+        <p>Our flagship program offers free JavaScript coding classes through the Code.org curriculum, taught by trained student instructors. As we grow, we aim to expand into additional areas of technology education and create more opportunities for students to explore STEM careers.</p>
+        <p>TechLift also provides meaningful volunteer and leadership opportunities for students. Volunteers can earn community service hours while gaining real-world experience in teaching, curriculum development, marketing, event planning, fundraising, outreach, nonprofit management, and leadership.</p>
+        <p>By empowering students as both learners and leaders, TechLift works to bridge the digital divide and create a future where every student has access to the technology education and opportunities they deserve.</p>
+        <br>
+        <a class="btn-primary" onclick="showPage('programs')">Explore Our Programs →</a>
+      </div>
+      <div class="fade-in" style="display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px">
+          <circle cx="190" cy="190" r="170" fill="rgba(26,46,74,0.04)" stroke="rgba(42,157,143,0.15)" stroke-width="1"/>
+          <circle cx="190" cy="190" r="130" fill="rgba(26,46,74,0.06)" stroke="rgba(42,157,143,0.12)" stroke-width="1"/>
+          <!-- Central icon -->
+          <rect x="130" y="140" width="120" height="80" rx="10" fill="var(--navy)" stroke="rgba(42,157,143,0.4)" stroke-width="1.5"/>
+          <rect x="140" y="152" width="100" height="56" rx="4" fill="#0f1e31"/>
+          <text x="162" y="185" fill="#2a9d8f" font-size="20" font-weight="800" font-family="monospace">&lt;/&gt;</text>
+          <rect x="120" y="220" width="140" height="10" rx="5" fill="var(--navy)"/>
+          <!-- Orbiting icons -->
+          <g transform="translate(60, 90)">
+            <circle cx="20" cy="20" r="20" fill="rgba(42,157,143,0.15)" stroke="rgba(42,157,143,0.3)" stroke-width="1"/>
+            <text x="10" y="26" font-size="16">📚</text>
+          </g>
+          <g transform="translate(290, 60)">
+            <circle cx="20" cy="20" r="20" fill="rgba(26,46,74,0.1)" stroke="rgba(42,157,143,0.25)" stroke-width="1"/>
+            <text x="10" y="26" font-size="16">🏛️</text>
+          </g>
+          <g transform="translate(50, 240)">
+            <circle cx="20" cy="20" r="20" fill="rgba(42,157,143,0.12)" stroke="rgba(42,157,143,0.25)" stroke-width="1"/>
+            <text x="10" y="26" font-size="16">🌟</text>
+          </g>
+          <g transform="translate(295, 235)">
+            <circle cx="20" cy="20" r="20" fill="rgba(26,46,74,0.08)" stroke="rgba(42,157,143,0.2)" stroke-width="1"/>
+            <text x="10" y="26" font-size="16">🎓</text>
+          </g>
+          <!-- Connecting lines -->
+          <line x1="80" y1="110" x2="140" y2="165" stroke="rgba(42,157,143,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="310" y1="80" x2="240" y2="155" stroke="rgba(42,157,143,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="70" y1="260" x2="140" y2="215" stroke="rgba(42,157,143,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="315" y1="255" x2="240" y2="215" stroke="rgba(42,157,143,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="vision-section">
+    <div class="container">
+      <span class="section-label" style="color:rgba(255,255,255,0.6);display:block;text-align:center;margin-bottom:1rem">Our Vision</span>
+      <h2 class="section-title" style="text-align:center;margin-bottom:1.5rem">Where We're Headed</h2>
+      <p class="vision-quote">"Every student, regardless of background, has access to high-quality computer science education and technology opportunities."</p>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">Core Values</span>
+        <h2 class="section-title">What Drives Us</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <span class="value-icon">🔓</span>
+          <h3>Accessibility</h3>
+          <p>Making technology education available to all students, regardless of background or resources.</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">💡</span>
+          <h3>Innovation</h3>
+          <p>Encouraging creativity, problem-solving, and the courage to build something new.</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">🏆</span>
+          <h3>Leadership</h3>
+          <p>Developing the next generation of leaders through meaningful service and experience.</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">🤝</span>
+          <h3>Community</h3>
+          <p>Building strong partnerships and lasting impact within the communities we serve.</p>
+        </div>
+        <div class="value-card fade-in">
+          <span class="value-icon">📖</span>
+          <h3>Education</h3>
+          <p>Providing meaningful, high-quality learning experiences that open doors for every student.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================
+     PROGRAMS PAGE
+============================= -->
+<div id="page-programs" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--teal-light);display:block;margin-bottom:0.75rem">What We Do</span>
+      <h1>Our Programs</h1>
+      <p>Free, high-quality technology education programs designed to meet students where they are and take them where they want to go.</p>
+    </div>
+  </div>
+
+  <section class="programs-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Programs</span>
+        <h2 class="section-title">Every Program. Always Free.</h2>
+        <p class="section-sub">All TechLift programs are 100% free for students. We partner with libraries, schools, and community centers to bring these programs directly to underserved communities.</p>
+      </div>
+
+      <div class="program-card fade-in">
+        <div class="program-card-icon">💻</div>
+        <div>
+          <h3>Free JavaScript Coding Classes</h3>
+          <p>TechLift's flagship program teaches free JavaScript coding classes using the proven Code.org curriculum. Classes are held through partnerships with libraries, schools, and community centers and are taught by trained student instructors who bring relatable, peer-to-peer learning to every session.</p>
+          <div class="topic-tags">
+            <span class="tag">Variables</span>
+            <span class="tag">Conditionals</span>
+            <span class="tag">Loops</span>
+            <span class="tag">Functions</span>
+            <span class="tag">Arrays</span>
+            <span class="tag">Projects</span>
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Code.org Curriculum</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card fade-in">
+        <div class="program-card-icon">🔧</div>
+        <div>
+          <h3>Technology Workshops</h3>
+          <p>Hands-on workshops that introduce students to a variety of technology topics and career pathways. These interactive sessions help students explore areas of computer science beyond coding, from digital literacy to career exploration in tech industries.</p>
+          <div class="topic-tags">
+            <span class="tag">Hands-On Learning</span>
+            <span class="tag">Tech Career Paths</span>
+            <span class="tag">Digital Literacy</span>
+            <span class="tag">STEM Exploration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card fade-in">
+        <div class="program-card-icon">⚡</div>
+        <div>
+          <h3>Hackathons</h3>
+          <p>Collaborative coding events focused on innovation and creativity. Students team up to tackle real-world problems, build projects from scratch, and present their solutions - developing technical skills, teamwork, and entrepreneurial thinking in the process.</p>
+          <div class="topic-tags">
+            <span class="tag">Team Collaboration</span>
+            <span class="tag">Project Building</span>
+            <span class="tag">Innovation</span>
+            <span class="tag">Presentations</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card fade-in">
+        <div class="program-card-icon">🏆</div>
+        <div>
+          <h3>Coding Competitions</h3>
+          <p>Friendly competitions that encourage technical growth, problem-solving, and teamwork. TechLift competitions give students the opportunity to test their skills, learn from peers, and celebrate growth - at every skill level.</p>
+          <div class="topic-tags">
+            <span class="tag">All Skill Levels</span>
+            <span class="tag">Technical Growth</span>
+            <span class="tag">Peer Learning</span>
+            <span class="tag">Recognition</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="program-card fade-in">
+        <div class="program-card-icon">🌐</div>
+        <div>
+          <h3>Community STEM Events</h3>
+          <p>Events that connect students to technology opportunities, mentors, and resources in their communities. These events help students see real-world applications of STEM and meet professionals who have built careers in technology.</p>
+          <div class="topic-tags">
+            <span class="tag">Community Connection</span>
+            <span class="tag">Mentorship</span>
+            <span class="tag">Career Exploration</span>
+            <span class="tag">STEM Networking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnerships CTA -->
+  <section style="background:var(--off-white);padding:4rem 2rem">
+    <div class="container" style="text-align:center">
+      <span class="section-label">Bring TechLift to Your Community</span>
+      <h2 class="section-title">Partner With Us</h2>
+      <p class="section-sub" style="margin:0 auto 2rem">Are you a library, school, or community center? Partner with TechLift to bring free coding classes and STEM programs to your students.</p>
+      <a class="btn-primary" onclick="showPage('contact')">Contact Us to Partner →</a>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================
+     LEADERSHIP PAGE
+============================= -->
+<div id="page-leadership" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--teal-light);display:block;margin-bottom:0.75rem">Our Team</span>
+      <h1>TechLift Council</h1>
+      <p>A student-led leadership team dedicated to advancing TechLift's mission and creating opportunity in their communities.</p>
+    </div>
+  </div>
+
+  <section class="council-section">
+    <div class="container">
+
+      <div class="section-header center fade-in">
+        <span class="section-label">Leadership Structure</span>
+        <h2 class="section-title">Meet the Council</h2>
+        <p class="section-sub">Every TechLift Council member is a student who leads with purpose, contributes actively, and helps advance our mission of accessible CS education.</p>
+      </div>
+
+      <!-- Founder -->
+      <div class="council-top fade-in">
+        <div class="president-card">
+          <div class="pres-icon">👑</div>
+          <h3>Founder & President</h3>
+          <span class="role-badge">Executive Leadership</span>
+          <p>Leads the organization, sets the vision, oversees all operations, and represents TechLift publicly. The Founder & President is the driving force behind TechLift's growth and mission.</p>
+        </div>
+      </div>
+
+      <!-- Directors Grid -->
+      <div class="directors-grid fade-in">
+
+        <!-- VP spans 2 -->
+        <div class="director-card vp-card">
+          <div class="director-icon">🤝</div>
+          <h4>Vice President</h4>
+          <ul>
+            <li>Supports the Founder & President</li>
+            <li>Coordinates communication between directors</li>
+            <li>Assists with organization-wide planning</li>
+            <li>Helps oversee operations and growth</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">💰</div>
+          <h4>Director of Finance & Development</h4>
+          <ul>
+            <li>Leads fundraising efforts</li>
+            <li>Secures donations and sponsorships</li>
+            <li>Researches grants and scholarships</li>
+            <li>Plans fundraising initiatives</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">🏛️</div>
+          <h4>Director of Community Partnerships</h4>
+          <ul>
+            <li>Builds relationships with libraries</li>
+            <li>Connects with schools & community centers</li>
+            <li>Secures teaching locations</li>
+            <li>Expands TechLift programs</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">📣</div>
+          <h4>Director of Marketing</h4>
+          <ul>
+            <li>Manages social media</li>
+            <li>Creates flyers & promotional materials</li>
+            <li>Promotes programs and events</li>
+            <li>Maintains consistent branding</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">📚</div>
+          <h4>Director of Education</h4>
+          <ul>
+            <li>Oversees curriculum</li>
+            <li>Improves lesson plans</li>
+            <li>Creates teaching resources</li>
+            <li>Ensures teaching consistency</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">🎓</div>
+          <h4>Director of Instructors</h4>
+          <ul>
+            <li>Recruits instructors</li>
+            <li>Trains instructors</li>
+            <li>Evaluates instructor readiness</li>
+            <li>Supports teaching operations</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">🗓️</div>
+          <h4>Director of Events</h4>
+          <ul>
+            <li>Plans hackathons</li>
+            <li>Organizes workshops</li>
+            <li>Coordinates competitions</li>
+            <li>Oversees event logistics</li>
+          </ul>
+        </div>
+
+        <div class="director-card">
+          <div class="director-icon">👥</div>
+          <h4>Director of Membership</h4>
+          <ul>
+            <li>Manages volunteer onboarding</li>
+            <li>Tracks volunteer hours</li>
+            <li>Maintains records</li>
+            <li>Oversees volunteer engagement</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Apply CTA -->
+      <div class="fade-in" style="text-align:center;margin-top:3.5rem;background:var(--navy);border-radius:20px;padding:3rem 2rem">
+        <span style="font-size:2rem;display:block;margin-bottom:1rem">🚀</span>
+        <h3 style="font-size:1.5rem;font-weight:800;color:white;margin-bottom:0.75rem">All Board Positions Are Open!</h3>
+        <p style="color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 1.75rem;line-height:1.65">Join the TechLift Council and help lead a growing nonprofit. Applications are open now for all director roles.</p>
+        <a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank" class="btn-primary">Apply for the Board →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================
+     VOLUNTEER PAGE
+============================= -->
+<div id="page-volunteer" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--teal-light);display:block;margin-bottom:0.75rem">Make an Impact</span>
+      <h1>Volunteer With TechLift</h1>
+      <p>Earn community service hours while gaining real-world experience in teaching, marketing, events, and nonprofit leadership.</p>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <section class="volunteer-benefits">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Why Volunteer</span>
+        <h2 class="section-title">More Than Service Hours</h2>
+        <p class="section-sub">TechLift volunteers gain hands-on experience that strengthens resumes, college applications, scholarship essays, and future careers - while making a real difference in their communities.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">📋</div>
+          <div><h4>Community Service Hours</h4><p>Log verified service hours for school, scholarship, and college requirements.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">👑</div>
+          <div><h4>Leadership Development</h4><p>Grow as a leader in a real nonprofit environment.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🎓</div>
+          <div><h4>Teaching Experience</h4><p>Learn how to explain concepts, manage a classroom, and inspire students.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🎤</div>
+          <div><h4>Public Speaking</h4><p>Build confidence presenting in front of groups and leading discussions.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🗓️</div>
+          <div><h4>Event Planning</h4><p>Help organize hackathons, workshops, and competitions from start to finish.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">📣</div>
+          <div><h4>Marketing Experience</h4><p>Create real promotional content and manage social media for a nonprofit.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">💰</div>
+          <div><h4>Fundraising Skills</h4><p>Learn grant research, sponsorship outreach, and nonprofit fundraising.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🏛️</div>
+          <div><h4>Nonprofit Management</h4><p>Understand how a real nonprofit organization operates from the inside.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🌐</div>
+          <div><h4>Outreach Experience</h4><p>Connect with community organizations, schools, and local leaders.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">📄</div>
+          <div><h4>Resume Building</h4><p>Add meaningful, verifiable experience to your resume or portfolio.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🏫</div>
+          <div><h4>College Application Edge</h4><p>Strengthen your applications with real nonprofit and community leadership experience.</p></div>
+        </div>
+        <div class="benefit-item fade-in">
+          <div class="bi-icon">🎖️</div>
+          <div><h4>Scholarship Enhancement</h4><p>Add compelling experience to scholarship essays and applications.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer Roles -->
+  <section class="volunteer-roles">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">Volunteer Roles</span>
+        <h2 class="section-title">Volunteer Positions</h2>
+        <p class="section-sub">We are building our volunteer program and will be opening positions soon. Check back or follow us on Instagram for updates!</p>
+      </div>
+      <div class="fade-in" style="text-align:center;background:var(--off-white);border:2px dashed rgba(42,157,143,0.3);border-radius:20px;padding:4rem 2rem;max-width:640px;margin:0 auto">
+        <span style="font-size:3rem;display:block;margin-bottom:1.25rem">🚧</span>
+        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:0.75rem">No Volunteer Positions Available Yet</h3>
+        <p style="color:var(--text-mid);line-height:1.7;margin-bottom:1.75rem">Volunteer opportunities are coming soon! We are actively developing our volunteer program and will be announcing openings shortly. Follow us on Instagram or send us a message to be notified when positions open up.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="https://www.instagram.com/techlift_/"  target="_blank" class="btn-primary">Follow @techlift_ for Updates</a>
+          <a onclick="showPage('contact')" class="btn-secondary" style="color:var(--navy);border-color:var(--navy)">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================
+     BOARD APPLICATIONS PAGE
+============================= -->
+<div id="page-apply" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--teal-light);display:block;margin-bottom:0.75rem">Applications Open</span>
+      <h1>TechLift Council Applications</h1>
+      <p>Join our student-led board and help empower the next generation through technology education. Lead. Inspire. Create Impact.</p>
+    </div>
+  </div>
+
+  <!-- Why Join -->
+  <section class="apply-hero-section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">Why Join TechLift?</span>
+        <h2 class="section-title">Lead Something That Matters</h2>
+        <p class="section-sub">As a TechLift Council member, you'll gain real-world experience that sets you apart - while making a tangible difference in your community.</p>
+      </div>
+
+      <div class="why-join-grid fade-in">
+        <div class="wj-item">
+          <span class="wj-icon">🏆</span>
+          <h4>Leadership & Teamwork</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">🏫</span>
+          <h4>Strengthen College Apps</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">💼</span>
+          <h4>Real-World Experience</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">🌐</span>
+          <h4>Build Your Network</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">📈</span>
+          <h4>Grow TechLift's Impact</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">📋</span>
+          <h4>Community Service Hours</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">🎤</span>
+          <h4>Public Speaking</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">📣</span>
+          <h4>Marketing & Outreach</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">💰</span>
+          <h4>Fundraising Skills</h4>
+        </div>
+        <div class="wj-item">
+          <span class="wj-icon">🎖️</span>
+          <h4>Scholarship Edge</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="positions-list">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Open Positions</span>
+        <h2 class="section-title">All Board Roles Are Open</h2>
+        <p class="section-sub">We're building our founding council. Every position listed below is open for applications right now.</p>
+      </div>
+      <div class="pos-grid fade-in">
+        <div class="pos-card">
+          <div class="pos-card-icon">🤝</div>
+          <div>
+            <h4>Vice President</h4>
+            <p>Supports the President, coordinates communication between directors, assists with organization-wide planning, and helps oversee operations and growth.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">💰</div>
+          <div>
+            <h4>Director of Finance & Development</h4>
+            <p>Leads fundraising, secures donations and sponsorships, researches grants, and plans fundraising initiatives for long-term sustainability.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">🏛️</div>
+          <div>
+            <h4>Director of Community Partnerships</h4>
+            <p>Builds relationships with libraries, schools, and community centers. Secures teaching locations and expands TechLift programs.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">📣</div>
+          <div>
+            <h4>Director of Marketing</h4>
+            <p>Manages social media, creates flyers and promotional content, promotes programs and events, and maintains consistent branding.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">📚</div>
+          <div>
+            <h4>Director of Education</h4>
+            <p>Oversees curriculum, improves lesson plans, creates teaching resources, and ensures high-quality, consistent instruction across all classes.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">🎓</div>
+          <div>
+            <h4>Director of Instructors</h4>
+            <p>Recruits and trains instructors, evaluates instructor readiness, assigns instructors to classes, and supports all teaching operations.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">🗓️</div>
+          <div>
+            <h4>Director of Events</h4>
+            <p>Plans hackathons, organizes workshops, coordinates competitions, and oversees all event logistics from planning to execution.</p>
+          </div>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon">👥</div>
+          <div>
+            <h4>Director of Membership</h4>
+            <p>Manages volunteer onboarding, tracks volunteer hours, maintains records, and oversees volunteer engagement across all TechLift programs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section class="requirements-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Expectations</span>
+        <h2 class="section-title">What We Expect From Council Members</h2>
+      </div>
+      <div class="req-grid fade-in">
+        <div class="req-card">
+          <span class="req-icon">⚡</span>
+          <h3>Active Contribution</h3>
+          <p>All TechLift Council members are expected to contribute actively to the organization and help advance TechLift's mission. This is a real leadership commitment, not a title.</p>
+        </div>
+        <div class="req-card">
+          <span class="req-icon">⏱️</span>
+          <h3>Time Commitment</h3>
+          <p>Council members should expect to contribute approximately 3-6 hours per week depending on their role and the current phase of TechLift's programs and events.</p>
+        </div>
+        <div class="req-card">
+          <span class="req-icon">💻</span>
+          <h3>Teaching Requirement</h3>
+          <p>All TechLift Council members are required to teach or assist in teaching coding classes at least once per program cycle to remain connected to the organization's core mission and impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="max-width:780px;margin:0 auto">
+        <div class="faq-item fade-in" onclick="toggleFaq(this)">
+          <div class="faq-question">Can I join with no prior coding experience?</div>
+          <div class="faq-answer">Coding experience is recommended, since most TechLift members are expected to be able to teach or assist in teaching coding classes. However, prior experience is not strictly required - all volunteers and leaders are provided with thorough training, structured lesson materials, and clear instructions on what to teach. Depending on the position you apply for, more coding experience may be required, especially for instructor or education-focused roles. But there are also roles where beginners can learn and grow while contributing meaningfully to the organization.</div>
+        </div>
+        <div class="faq-item fade-in" onclick="toggleFaq(this)">
+          <div class="faq-question">How many hours per week is the board commitment?</div>
+          <div class="faq-answer">Council members should expect to contribute approximately 3-6 hours per week depending on their role. During active program cycles or event seasons, the time commitment may be higher. All council members are encouraged to manage their time effectively and communicate with their team.</div>
+        </div>
+        <div class="faq-item fade-in" onclick="toggleFaq(this)">
+          <div class="faq-question">Do all board members have to teach?</div>
+          <div class="faq-answer">Yes. All TechLift Council members are required to teach or assist in teaching coding classes at least once per program cycle. This requirement ensures that every council member stays connected to TechLift's core mission and understands the student experience firsthand.</div>
+        </div>
+        <div class="faq-item fade-in" onclick="toggleFaq(this)">
+          <div class="faq-question">What do I gain from being on the board?</div>
+          <div class="faq-answer">TechLift Council members gain real-world experience in leadership, nonprofit management, teaching, public speaking, event planning, fundraising, marketing, community outreach, team management, and project management. This experience strengthens college applications, resumes, scholarship essays, and future career prospects.</div>
+        </div>
+        <div class="faq-item fade-in" onclick="toggleFaq(this)">
+          <div class="faq-question">How do I apply?</div>
+          <div class="faq-answer">You can apply by clicking the Apply Now button on this page, which will take you directly to our application form. You can also DM us on Instagram @techlift_ or email us at techlift4@gmail.com with any questions before applying!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply CTA -->
+  <div class="apply-cta">
+    <div class="container">
+      <h2>Ready to Lead?</h2>
+      <p>Board of Directors applications are open now. Apply today and help shape the future of TechLift.</p>
+      <a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank" class="btn-white">
+        Apply Now
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================
+     CONTACT PAGE
+============================= -->
+<div id="page-contact" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--teal-light);display:block;margin-bottom:0.75rem">Reach Out</span>
+      <h1>Contact TechLift</h1>
+      <p>Whether you're looking to volunteer, partner with us, apply for the board, or just learn more - we'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <h3>Let's Connect</h3>
+          <p>TechLift is a student-led nonprofit growing its reach across underserved communities. Whether you're a student, parent, educator, community partner, or potential sponsor, we want to hear from you.</p>
+
+          <div class="contact-methods">
+            <a href="https://www.instagram.com/techlift_/"  target="_blank" class="contact-method">
+              <div class="cm-icon">📸</div>
+              <div class="cm-text">
+                <h4>Instagram</h4>
+                <p>@techlift_</p>
+              </div>
+            </a>
+            <a href="mailto:techlift4@gmail.com" class="contact-method">
+              <div class="cm-icon">✉️</div>
+              <div class="cm-text">
+                <h4>Email Us</h4>
+                <p>techlift4@gmail.com</p>
+              </div>
+            </a>
+          </div>
+
+          <div style="margin-top:2rem;background:var(--navy);border-radius:16px;padding:1.75rem">
+            <h4 style="color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1rem">Quick Actions</h4>
+            <div style="display:flex;flex-direction:column;gap:0.75rem">
+              <a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank" class="btn-primary" style="justify-content:center;cursor:pointer">
+                🎓 Apply for the Board
+              </a>
+              <a onclick="showPage('volunteer')" class="btn-secondary" style="justify-content:center;cursor:pointer;color:rgba(255,255,255,0.8)">
+                🙋 Volunteer With Us
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form fade-in">
+          <h3>Send a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="fname" placeholder="Your first name">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="lname" placeholder="Your last name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="femail" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>I'm interested in...</label>
+            <select id="finterest">
+              <option value="">Select an option</option>
+              <option>Volunteering with TechLift</option>
+              <option>Applying for a Board Position</option>
+              <option>Partnering with TechLift (Library/School/Organization)</option>
+              <option>Sponsoring TechLift</option>
+              <option>Learning more about programs</option>
+              <option>General inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea id="fmessage" placeholder="Tell us a little about yourself and how you'd like to get involved..."></textarea>
+          </div>
+          <button class="form-submit-btn" onclick="handleFormSubmit()">
+            Send Message →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Section -->
+  <section style="background:var(--navy);padding:4.5rem 2rem">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+        <div>
+          <span class="section-label" style="color:var(--teal-light)">For Organizations</span>
+          <h2 class="section-title" style="color:white">Bring TechLift to Your Community</h2>
+          <p style="color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:1.5rem">Libraries, schools, and community centers partner with TechLift to provide free coding classes and STEM programs to their students. We handle curriculum, instructors, and materials - all at no cost.</p>
+          <a href="mailto:techlift4@gmail.com" class="btn-primary">Email Us to Partner</a>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:1.5rem;text-align:center">
+            <span style="font-size:2rem;display:block;margin-bottom:0.75rem">🏛️</span>
+            <h4 style="color:white;font-size:0.9rem;font-weight:700">Libraries</h4>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:1.5rem;text-align:center">
+            <span style="font-size:2rem;display:block;margin-bottom:0.75rem">🏫</span>
+            <h4 style="color:white;font-size:0.9rem;font-weight:700">Schools</h4>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:1.5rem;text-align:center">
+            <span style="font-size:2rem;display:block;margin-bottom:0.75rem">🏢</span>
+            <h4 style="color:white;font-size:0.9rem;font-weight:700">Community Centers</h4>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:1.5rem;text-align:center">
+            <span style="font-size:2rem;display:block;margin-bottom:0.75rem">🌐</span>
+            <h4 style="color:white;font-size:0.9rem;font-weight:700">Organizations</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============================
+     FOOTER
+============================= -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" onclick="showPage('home')" style="display:inline-flex;margin-bottom:0.25rem">
+        <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:38px;height:38px">
+          <rect x="5" y="18" width="26" height="16" rx="2" fill="#2a9d8f"/>
+          <rect x="7" y="20" width="22" height="12" rx="1" fill="white" opacity="0.15"/>
+          <text x="11" y="29" font-size="7" fill="white" font-weight="800" font-family="monospace">&lt;/&gt;</text>
+          <rect x="3" y="34" width="30" height="2.5" rx="1" fill="#2a9d8f"/>
+          <circle cx="31" cy="10" r="3.5" fill="#1a2e4a"/>
+          <path d="M31 10 L36 5 M33 5 L36 5 L36 8" stroke="#3bbfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="1" y="14" width="3" height="3" fill="#3bbfb0" opacity="0.7"/>
+        </svg>
+        <span class="nav-logo-text" style="font-size:1.2rem">Tech<span>Lift</span></span>
+      </a>
+      <p>Code. Empower. Elevate.<br><br>A student-led nonprofit expanding access to computer science education and technology opportunities in underserved communities.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/techlift_/"  target="_blank" class="social-btn" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="mailto:techlift4@gmail.com" class="social-btn" title="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a onclick="showPage('home')">Home</a></li>
+        <li><a onclick="showPage('about')">About</a></li>
+        <li><a onclick="showPage('programs')">Programs</a></li>
+        <li><a onclick="showPage('leadership')">Leadership</a></li>
+        <li><a onclick="showPage('volunteer')">Volunteer</a></li>
+        <li><a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank">Apply</a></li>
+        <li><a onclick="showPage('contact')">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a onclick="showPage('programs')">Coding Classes</a></li>
+        <li><a onclick="showPage('programs')">Workshops</a></li>
+        <li><a onclick="showPage('programs')">Hackathons</a></li>
+        <li><a onclick="showPage('programs')">Competitions</a></li>
+        <li><a onclick="showPage('programs')">STEM Events</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="https://forms.gle/kdoMepLygF5QzCV56" target="_blank">Apply for Board</a></li>
+        <li><a onclick="showPage('volunteer')">Volunteer</a></li>
+        <li><a onclick="showPage('contact')">Partner With Us</a></li>
+        <li><a href="mailto:techlift4@gmail.com">Email Us</a></li>
+        <li><a href="https://www.instagram.com/techlift_/"  target="_blank">@techlift_</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 TechLift. All rights reserved. Student-Led Nonprofit Organization.</p>
+    <p class="footer-tagline">Code. Empower. Elevate.</p>
+  </div>
+</footer>
+
+<!-- Form Success Toast -->
+<div id="toast" style="position:fixed;bottom:2rem;right:2rem;background:var(--teal);color:white;padding:1rem 1.5rem;border-radius:12px;font-weight:600;font-size:0.9rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.4s;box-shadow:0 8px 24px rgba(42,157,143,0.4)">
+  ✓ Message sent! We'll get back to you soon.
+</div>
+
+<script>
+  // Page navigation
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navEl = document.getElementById('nav-' + id);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(checkFadeIns, 100);
+  }
+
+  // Mobile menu
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // FAQ toggle
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+
+  // Form submit
+  function handleFormSubmit() {
+    const fname = document.getElementById('fname').value || '';
+    const lname = document.getElementById('lname').value || '';
+    const email = document.getElementById('femail').value || '';
+    const interest = document.getElementById('finterest').value || 'General inquiry';
+    const message = document.getElementById('fmessage').value || '';
+    const subject = encodeURIComponent('TechLift Contact: ' + interest);
+    const body = encodeURIComponent(
+      'Name: ' + fname + ' ' + lname + '\n' +
+      'Email: ' + email + '\n' +
+      'Inquiry: ' + interest + '\n\n' +
+      'Message:\n' + message
+    );
+    window.open('mailto:techlift4@gmail.com?subject=' + subject + '&body=' + body);
+    const toast = document.getElementById('toast');
+    toast.style.transform = 'translateY(0)';
+    toast.style.opacity = '1';
+    setTimeout(() => {
+      toast.style.transform = 'translateY(100px)';
+      toast.style.opacity = '0';
+    }, 3500);
+  }
+
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('scrollProgress').style.width = scrolled + '%';
+    checkFadeIns();
+  });
+
+  // Fade in on scroll
+  function checkFadeIns() {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 60) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  // Initial fade check
+  setTimeout(checkFadeIns, 200);
+  window.addEventListener('load', checkFadeIns);
+</script>
+
+</body>
+</html>
